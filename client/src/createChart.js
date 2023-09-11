@@ -2,18 +2,17 @@ import { getAccount } from './bankApi.js';
 import getMonthlyBalance from './getMonthlyBalance.js';
 import Chart from 'chart.js/auto';
 
-export default async function createChart(id, token = 'ZGV2ZWxvcGVyOnNraWxsYm94', count = -12) { // id, token = 'ZGV2ZWxvcGVyOnNraWxsYm94',
+export default async function createChart(id, token = 'ZGV2ZWxvcGVyOnNraWxsYm94', count = -12) { 
   const accountData = await getAccount(id, token)
     .then(response => response.payload);
   const balanceData =  getMonthlyBalance(accountData);
-
   const data = balanceData.slice(count);
 
   let maxBalance = Math.max(...data.map(row => row.amount));
   let minBalance = Math.min(...data.map(row => row.amount));;
   if (maxBalance ===  minBalance) {
    minBalance = 0;
-  } 
+  }
 
   new Chart(
     document.getElementById('acquisitions'),
@@ -41,17 +40,17 @@ export default async function createChart(id, token = 'ZGV2ZWxvcGVyOnNraWxsYm94'
             }
           },
           scales: {
-            // Настройте шкалы для осей X и Y
+            // Настройка шкалы для осей X и Y
             y: {
               beginAtZero: true,
               grace: '10%',
               drawBorder: false,
               grid: { display: false },
               position: 'right',
-              min: minBalance, //  минимальное значение 
+              min: 0, //  минимальное значение 
               max: maxBalance, // максимальное значение 
               ticks: {
-                maxTicksLimit: 2,
+                maxTicksLimit: 4,
                 tickBorderDash: 0,
                 padding: 24,
                 backdropPadding: {x: 40, y: 4},
@@ -64,5 +63,5 @@ export default async function createChart(id, token = 'ZGV2ZWxvcGVyOnNraWxsYm94'
           }
         }
       }
-    );   
+    );
 }

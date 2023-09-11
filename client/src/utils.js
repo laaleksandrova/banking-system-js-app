@@ -27,3 +27,9 @@ export function formatDateTable(date) {
 
   return  formattedDate
 }
+
+export function formatCurrency(number) {
+    const formattedCurrency = number.toLocaleString("ru-RU");
+
+    return formattedCurrency
+}

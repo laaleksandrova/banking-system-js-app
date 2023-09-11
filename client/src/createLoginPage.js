@@ -14,7 +14,7 @@ export default function createLoginPage() {
           loginLoginInput = el('input', {class: 'login_input', type: 'text', name: 'login', id: 'login'}),
           loginPasswordLabel = el('label', {for: 'password', class: 'login_label'}),
           loginPasswordSpan = el('span', {class: 'login_span'}, 'Пароль'),
-          loginPasswordInput = el('input', {class: 'login_input', type: 'text', name: 'password', id: 'password'}),
+          loginPasswordInput = el('input', {class: 'login_input', type: 'password', name: 'password', id: 'password'}),
           loginAlertSpan = el('p', {class: 'login-alert red', id: 'login-alert'}),
           loginButton = el('a', {
                 class: 'login_button btn-reset btn',

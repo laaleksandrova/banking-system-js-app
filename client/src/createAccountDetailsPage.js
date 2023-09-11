@@ -14,7 +14,6 @@ export default async function createAccountDetailsPage(id, login, password) {
         .then(response => response.payload.token)
     const  accoutDetailsData = await getAccount(id, token)
         .then(response => response.payload);
-
     let transferHistoryTable = await createTransferHistoryTable(id, token, -10);
 
     //запись данных в localStorage
@@ -59,7 +58,7 @@ export default async function createAccountDetailsPage(id, login, password) {
             class: 'btn transfer-amount_button',
             async onclick(event) {
                event.preventDefault();
-               validateForm();
+               validateForm(accoutDetailsData);
                let transferObj = {
                 from: accoutDetailsData.account,
                 to: document.getElementById('accouts-select').value,
@@ -69,7 +68,6 @@ export default async function createAccountDetailsPage(id, login, password) {
                try {
                 await transferFunds( transferObj.from, transferObj.to, transferObj.amount, token)
                 .then((res) => {
-                    console.log(res);
                     if (res.playload !== null && document.getElementById('transfer-amount').value > 0 && res.error !== 'Overdraft prevented') {
                          window.location.reload()
                     }

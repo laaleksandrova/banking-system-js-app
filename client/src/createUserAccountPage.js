@@ -1,5 +1,4 @@
 import './assets/fonts/fonts.scss';
-import Choices from 'choices.js';
 import './main.scss';
 import { el, setChildren }  from 'redom';
 import { router } from './main.js';
@@ -8,14 +7,14 @@ import { formatNumber } from './utils.js';
 import { sortAccoutsList } from './sortAccoutsList.js';
 
 export default async function createUserAccountPage(login, password, prop) {
+  // данные
   const token = await autorization(login, password)
         .then(response => response.payload.token);
   const data  =  await getAccounts(token)
         .then(response => response.payload);
+  let accoutsData = sortAccoutsList(data, prop , false);
 
-  let accoutsData = sortAccoutsList(data, prop , false)
-  console.log(accoutsData)
-
+  // отрисовка
   const userAccountSection = el('section', {class: 'user-account'}),
         containerUserAccount =  el('div', {class: 'container user-account__container'}),
         containerTopUserAccount = el('div', {class: 'flex user-account__container--top'}),
@@ -34,7 +33,7 @@ export default async function createUserAccountPage(login, password, prop) {
               createAccount(token);
               window.location.reload();
           },
-        }, 'Создать новый счет'),
+        }, `Создать новый счет`),
         listUserAccount =  el('div', {class: 'user-account__list flex'});
 
         for (let item of accoutsData) {

@@ -20,8 +20,6 @@
     "chart.js": "^4.3.3",
     "choices.js": "^9.0.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "express-ws": "^5.0.2",
     "jquery": "^3.7.0",
     "navigo": "^8.11.1",
     "popper.js": "^1.16.1",

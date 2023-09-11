@@ -59,13 +59,3 @@ export default function createHeader() {
         headerNav
     }
 }
-
-
-
-
-// el('header', {class: 'header'}, (
-//     el('div', {class: 'container header__container flex'}, [
-//         el('img', {class: 'header__logo', alt: 'Coin', src: logo}),
-//         el('div', {class: 'header__nav'}),
-//     ])
-// ));

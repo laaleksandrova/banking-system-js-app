@@ -7,9 +7,6 @@ export default async function createChartRatio(id, token = 'ZGV2ZWxvcGVyOnNraWxs
       .then(response => response.payload);
     const balanceData =  getMonthlyBalance(accountData);
     const data = balanceData.slice(count);
-
-    console.log(data)
-
     let maxBalance = Math.max(...data.map(row => row.income));
   
     new Chart(
@@ -22,16 +19,18 @@ export default async function createChartRatio(id, token = 'ZGV2ZWxvcGVyOnNraWxs
               datasets: [
                 {
                   data: data.map(row => row.income), // Данные для оси Y (значения баланса)
-                //   yAxisID: 'first-y-axis',
                   backgroundColor: "#76CA66", // Цвет фона столбцов
                   borderColor: "#76CA66", // Цвет границы столбцов
-                  borderWidth: 1 // Толщина границы столбцов
+                  borderWidth: 1, // Толщина границы столбцов
+                  fill: true,
+                  stack: 'Stack 0',
                 }, {
                     data: data.map(row => row.expense), // Данные для оси Y (значения баланса)
-                    // yAxisID: 'second-y-axis',
                     backgroundColor: "#FD4E5D", // Цвет фона столбцов
                     borderColor: "#FD4E5D", // Цвет границы столбцов
-                    borderWidth: 1 // Толщина границы столбцов
+                    borderWidth: 1, // Толщина границы столбцов
+                    fill: true,
+                    stack: 'Stack 0',
                   }
               ]
             },
@@ -44,17 +43,17 @@ export default async function createChartRatio(id, token = 'ZGV2ZWxvcGVyOnNraWxs
                 }
               },
               scales: {
-                // Настройте шкалы для осей X и Y
+                // Настройка шкалы для осей X и Y
                 y: {
                   beginAtZero: true,
                   grace: '10%',
                   drawBorder: false,
                   grid: { display: false },
                   position: 'right',
-                  min: 0, //  минимальное значение 
-                  max: maxBalance, // максимальное значение 
+                  min: 0, //  минимальное значение
+                  max: maxBalance, // максимальное значение
                   ticks: {
-                    maxTicksLimit: 4,
+                    maxTicksLimit: 3,
                     tickBorderDash: 0,
                     padding: 24,
                     backdropPadding: {x: 40, y: 4},

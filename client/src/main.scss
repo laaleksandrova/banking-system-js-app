@@ -66,6 +66,18 @@ ul, ul li {
   background-color: #116ACC;
 }
 
+.btn:focus {
+  background-color: rgb(11, 69, 132);
+}
+
+.btn:hover {
+  background-color: rgba(17, 106, 204, 0.7)
+}
+
+.btn:active {
+  background-color: rgb(11, 69, 132);
+}
+
 .visually-hidden {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px);
@@ -104,6 +116,21 @@ ul, ul li {
   border: 2px;
 }
 
+.nav__item.btn:focus {
+  background-color: rgb(199, 219, 239);
+  border-radius: rgba(17, 106, 204, 1);
+}
+
+.nav__item.btn:hover {
+  background-color: rgb(146, 194, 245);
+  border-radius: rgba(17, 106, 204, 1);
+}
+
+.nav__item.btn:active {
+  background-color: rgb(199, 219, 239);
+  border-radius: rgba(17, 106, 204, 1);
+}
+
 .nav__item:last-child {
   margin-right: 0;
 }
@@ -115,7 +142,7 @@ ul, ul li {
   justify-content: center;
   align-items: center;
   min-height: 924px;
-  background-color: #E5E5E5;
+  background-color: #FFFFFF;
 }
 
 .login__center {
@@ -142,7 +169,7 @@ ul, ul li {
   justify-content: right;
 }
 
-.login_label {
+.login_label:first-child {
   margin-bottom: 25px;
 }
 
@@ -157,6 +184,7 @@ ul, ul li {
   width: 300px;
   height: 44px;
   margin-left: 18px;
+  padding: 10px 10px 10px 15px;
   border-radius: 7px;
   border: 1px solid #9CA3AF;
 }
@@ -184,7 +212,7 @@ ul, ul li {
   max-width: 1440;
   padding: 50px;
   min-height: 924px;
-  background-color: #E5E5E5;
+  background-color: #FFFFFF;
 }
 
 .user-account__container--top {
@@ -232,9 +260,12 @@ ul, ul li {
 .user-account_button--new {
   width: 234px;
   height: 52px;
-  padding: 13px 23px;
+  padding: 13px 23px 13px 48px;
   text-align: center;
   font-size: 16px;
+  background-image: url("./assets/images/plus.svg");
+  background-repeat: no-repeat;
+  background-position: 23px;
 }
 
 .user-account__list {
@@ -331,9 +362,12 @@ ul, ul li {
 .account-details_button--back{
   width: 209px;
   height: 52px;
-  padding: 12px 22px;
+  padding: 12px 22px 12px 48px;
   font-weight: 500;
   font-size: 16px;
+  background-image: url('./assets/images/arrow.svg');
+  background-repeat: no-repeat;
+  background-position: 22px;
 }
 
 .account-details__text--top-left {
@@ -543,10 +577,12 @@ table {
 .detail-history_button--back {
   width: 209px;
   height: 52px;
-  padding: 16px 24px;
+  padding: 12px 22px 12px 48px;
   font-weight: 500;
   font-size: 16px;
-  border-radius: 10px;
+  background-image: url('./assets/images/arrow.svg');
+  background-repeat: no-repeat;
+  background-position: 22px;
 }
 
 .detail-history__text--title-right {

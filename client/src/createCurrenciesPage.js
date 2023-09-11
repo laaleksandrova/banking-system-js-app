@@ -1,8 +1,8 @@
-import { el, setChildren }  from 'redom';
+import { el, setChildren } from 'redom';
 import { autorization, getCurrencyAccounts, getKnownCurrencies, exchangeCurrency} from './bankApi.js';
-import validateCurrenciesForm from './validateCurrenciesForm.js'
+import validateCurrenciesForm from './validateCurrenciesForm.js';
+import { formatCurrency } from './utils.js';
 import vector from './assets/images/vector.svg';
-import { router } from './main.js';
 import './main.scss';
 import './assets/fonts/fonts.scss';
 
@@ -14,8 +14,6 @@ export default async function createCurrenciesPage(login, password, socket) {
     const currencyAccountsArray = Object.values(currencyAccountsData); //возвращает массив значений
     const knownCurrency = await getKnownCurrencies()
         .then(response => response.payload);
-
-    console.log(currencyAccountsArray)
 
     const currenciesSection = el('section', {class: 'currencies'}),
     currenciesContainer =  el('div', {class: 'container currencies__container'}),
@@ -61,9 +59,6 @@ export default async function createCurrenciesPage(login, password, socket) {
             el('button', {
                 id: 'currencies-button',
                 class: 'change-currencies_button btn',
-                // disabled: 'disabled',
-                // 'type': 'submit',
-                // 'form': 'change-currencies-form',
                 async onclick(event) {
                     event.preventDefault();
                     validateCurrenciesForm(currencyAccountsArray);
@@ -75,7 +70,6 @@ export default async function createCurrenciesPage(login, password, socket) {
                     try {
                         await exchangeCurrency(carrencyObj.from, carrencyObj.to, carrencyObj.amount, token)
                         .then((res) => {
-                            console.log(res);
                             if (res.playload !== null && document.getElementById('change-amount').value > 0 && res.error !== 'Overdraft prevented') {
                                  window.location.reload()
                             }
@@ -96,7 +90,7 @@ export default async function createCurrenciesPage(login, password, socket) {
       let currencyAccountItem =  el('div', {class: 'flex currency-item__container'}, [
         el('div', {class: 'currency-item__container-left'}, `${item}`),
         el('div', {class: 'currency-item__container-center'}),
-        el('div', {class: 'currency-item__container-right'}, `${currencyAccountsData[item].amount}`),
+        el('div', {class: 'currency-item__container-right'}, `${formatCurrency(currencyAccountsData[item].amount)}`),
       ]);
       yourCurrenciesContainer.append(currencyAccountItem);
     }
@@ -106,7 +100,7 @@ export default async function createCurrenciesPage(login, password, socket) {
         let socketItem =   el('div', {class: 'flex socket-item__container'}, [
             el('div', {class: 'socket-item__container-left'}, `${savedSocket.from}/${savedSocket.to}`),
             el('div', {class: 'socket-item__container-center', id: 'socket-dotted'}),
-            el('div', {class: 'socket-item__container-right'}, `${savedSocket.rate}`),
+            el('div', {class: 'socket-item__container-right'}, `${formatCurrency(savedSocket.rate)}`),
             el('img', {class: 'socket-item__img', alt: 'Coin', src: vector, id: 'socket-img'},)
         ])
         socketContainer.prepend(socketItem);
@@ -118,7 +112,7 @@ export default async function createCurrenciesPage(login, password, socket) {
             soketCenterContainer.classList.add('dotted-red');
         } else if (savedSocket.change === 1) {
             soketImg.classList.add('img-green');
-            soketCenterContainer.classList.add('dotted-green') 
+            soketCenterContainer.classList.add('dotted-green');
         }
     }
 
@@ -129,7 +123,6 @@ export default async function createCurrenciesPage(login, password, socket) {
     setChildren(currenciesContainer, [currenciesTitle, currenciesCenterContainer]);
     setChildren(currenciesSection, currenciesContainer);
 
- 
     return{
         currenciesSection,
     }

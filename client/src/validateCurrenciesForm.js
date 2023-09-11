@@ -3,16 +3,11 @@ import './assets/fonts/fonts.scss';
 
 export default function validateCurrenciesForm(currencyAccountsArray) {
     const currencyFromAccount = document.getElementById('сurrency-from');
-    const currencyToAccount = document.getElementById('сurrency-to');
     const inputAmount = document.getElementById('change-amount');
     const alertSpan = document.getElementById('alert-span');
-    const button = document.getElementById('currencies-button');
-    // button.setAttribute('disabled', 'true')
 
     let accountFromValue = currencyFromAccount.value;
     let amountValue = inputAmount.value;
-
-
     let currency = currencyAccountsArray.find(item => item.code ==  accountFromValue);
     //валидация
     if (!amountValue) {
@@ -25,15 +20,12 @@ export default function validateCurrenciesForm(currencyAccountsArray) {
         alertSpan.textContent = 'Пожалуйста, введите положительную сумму!';
         inputAmount.classList.add('alert-сurrency');
         return
-    } else if (currency.amount < amountValue) { 
+    } else if (currency.amount < amountValue) {
         alertSpan.textContent = `Недостаточно средств на счете ${currency.code}`;
         inputAmount.classList.add('alert-сurrency');
         return
-    }else  {
+    } else  {
         alertSpan.innerText = '';
         inputAmount.classList.remove('alert-сurrency');
-        button.removeAttribute('disabled')
-        console.log(`все верно!`)
     }
-
 };

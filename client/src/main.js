@@ -10,7 +10,6 @@ import createATMCard from './createATMCard.js';
 import autocompleteAccountNumber from './autocompleteAccountNumber.js';
 import createPreloader from './preloader.js';
 import { getChangedCurrency } from './bankApi.js';
-// import Choices from 'choices.js';
 import './assets/fonts/fonts.scss';
 import './main.scss';
 
@@ -59,16 +58,9 @@ router.on('/accounts', async () => {
   let userAccountPage = await createUserAccountPage(login, password, 'amount');
   setChildren(main, userAccountPage.userAccountSection);
   header.headerNav.classList.remove('visually-hidden');
-  //  подключаем Choices
-  //  const element = document.querySelector('.js-choice');
-  //  const choices = new Choices(element, {
-  //    searchEnabled: false,
-  //    itemSelectText: '',
-  //  });
   // сортировка
   userAccountPage.choicesUserAccount.addEventListener('change', async function(event) {
     prop = `${event.target.value}`;
-    console.log(prop);
     let userAccountPage = await createUserAccountPage(login, password, prop);
     setChildren(main, userAccountPage.userAccountSection);
   });
@@ -76,39 +68,32 @@ router.on('/accounts', async () => {
 router.on('/account/:id', async function ({ data: { id }}) {
   const accountDetailsPage = await createAccountDetailsPage(id, login, password);
   setChildren(main, accountDetailsPage.accountDetailsSection);
-  header.headerNav.classList.remove('visually-hidden'); 
+  header.headerNav.classList.remove('visually-hidden');
   //подключаем автодополнение по использовавшимся счетам получателя из localStorage
   await autocompleteAccountNumber();
  })
 router.on('/account/:id/details', async function ({ data: { id }}) {
   const detailsHistoryPage = await createDetailsHistoryPage(id, login, password);
   setChildren(main, detailsHistoryPage.detailsHistorySection);
-  header.headerNav.classList.remove('visually-hidden'); 
+  header.headerNav.classList.remove('visually-hidden');
  })
 router.on('/banks', async () => {
   const atmCard =  await createATMCard();
   setChildren(main, atmCard.atmCardSection);
-  header.headerNav.classList.remove('visually-hidden'); 
+  header.headerNav.classList.remove('visually-hidden');
  })
 router.on('/currencies', async () => {
   const currenciesPage = await createCurrenciesPage(login, password, socket);
   setChildren(main, currenciesPage.currenciesSection);
-  header.headerNav.classList.remove('visually-hidden'); 
+  header.headerNav.classList.remove('visually-hidden');
  }, {
   befor(done) {
     socket.open()
-    console.log("[open] Соединение установлено");
-    // console.log(socket)
-    // socket.onopen = function() {
-    //   console.log("[open] Соединение установлено");
-    // }
     done();
   },
   leave(done) {
     socket.close(1000, "работа закончена");
-    console.log('[close] Соединение прервано');
     done();
   }
  })
 router.resolve();
-
