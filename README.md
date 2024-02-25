@@ -13,11 +13,15 @@
 * Форма входа пользователя
   ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_1.png)
 * Список счетов пользователя
-* Просмотр информации о существующей карте
-* Форма для перевода средств
+  ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_2.png)
+* Просмотр информации о существующей карте и форма для перевода средств
+  ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_3.png)
 * Подробная история баланса по карте
+  ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_4.png)
 * Мониторинг курса валют и валютные переводы
+  ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_5.png)
 * Страница отображения точек банкоматов на карте
+  ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_6.png)
 
 ## Установка и запуск проекта
 
@@ -61,7 +65,7 @@
   - «История переводов», отображет таблицу из 25 (или менее)  последними транзакциями, связанными с текущим просматриваемым счётом.
 * На странице валютный обмен пользователь может узнать о состоянии своих валютных счетов, изменении курсов валют и обменять одну валюту на другую.На данной странице имеются следующие элементы:
   - «Ваши валюты», где отображаются коды валют и текущие балансы пользователя.
-  - «Изменение курсов в реальном времени», , где показывается динамика курсов обмена валютных пар. Валютные пары разделяются слэшем.
+  - «Изменение курсов в реальном времени», где показывается динамика курсов обмена валютных пар. Валютные пары разделяются слэшем.
   - «Обмен валюты». При переводе из одной валюты в другую проходит валидация на заполненность полей.
 * На странице карта банкоматов отображается карта с местами, где находятся банкоматы, обслуживающие банк.
 
