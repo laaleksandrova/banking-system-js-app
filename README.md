@@ -11,6 +11,7 @@
 ## Разделы веб-приложения
 
 * Форма входа пользователя
+  ![the banking system](https://github.com/laaleksandrova/banking-system-js-app/blob/master/system_images/image_1.png)
 * Список счетов пользователя
 * Просмотр информации о существующей карте
 * Форма для перевода средств
